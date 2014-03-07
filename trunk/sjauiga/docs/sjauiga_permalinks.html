@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>URI structure and permalinks</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+       blockquote {
+       font-size: 9pt;
+       font-style: italic;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+    <p>&lt;&lt; <a href="sjauiga_manus_xws_layer.html">xws layer</a> |
+    <a href="sjauiga_toc.html">Table of Contents</a> |
+    <a href="sjauiga_poma.html">The Guaman Poma web site</a> &gt;&gt;</p>
+
+    <div class="level2">
+    <h2>URI structure and permalinks</h2>
+
+    <p>Anything on the net without a URL hardly exist.</p>
+
+    <p>One goal of the Sjauiga project has been too hide any complications as
+    regards URLs from the users. URLs should be such that they could be
+    reimplemented in the future regardless of technologies. They should be
+    brief enough to print on a folder or business card, and have a potential
+    for <a href="http://www.w3.org/Provider/Style/URI">being cool</a>.</p>
+
+    <p>Before SJAUIGA</p>
+    <pre>
+      <a href="http://base.kb.dk/manus_pub/cv/manus/ManusIntro.xsql?nnoc=manus_pub&amp;p_ManusId=41&amp;p_Lang=main">http://base.kb.dk/manus_pub/cv/manus/ManusIntro.xsql?nnoc=manus_pub&amp;p_ManusId=41&amp;p_Lang=main</a>
+    </pre>
+
+    <p>After SJAUIGA</p>
+
+    <pre>
+      <a href="http://www.kb.dk/permalink/2006/manus/41/">http://www.kb.dk/permalink/2006/manus/41/</a>
+    </pre>
+
+    <p>I.e., the URL length has decreased from 93 to 42 characters</p>
+
+    <h3>URL Syntax</h3>
+
+    <p>A Sjauiga URL consists of a prefix:</p>
+
+    <pre>
+      http://www.kb.dk/permalink/2006
+    </pre>
+
+    <p>It is meant that other applications which the www.kb.dk domain
+    should be able to use permalink, and it is understood that the
+    year 2006 refer to the year of publication of the application.</p>
+
+    <p>SJAUIGA publishes five applications. Hence:</p>
+
+    <pre>
+      http://www.kb.dk/permalink/2006/poma
+      http://www.kb.dk/permalink/2006/manus
+      http://www.kb.dk/permalink/2006/mus
+      http://www.kb.dk/permalink/2006/musman
+      http://www.kb.dk/permalink/2006/lum
+    </pre>
+
+    <p>What follows is work id, user interface language and page
+    number, i.e.,</p>
+
+    <pre>
+      http://www.kb.dk/permalink/2006/&lt;application>/&lt;ms id>/&lt;lang>/&lt;page number>/
+    </pre>
+
+    <p>Example: Page 3a in work 7 in the manus application, encoded in arabic
+    is given as</p>
+
+    <pre>
+      <a href="http://www.kb.dk/permalink/2006/manus/7/ara/3a/">http://www.kb.dk/permalink/2006/manus/7/ara/3a/</a>
+    </pre>
+    </div>
+    </div>
+    <p class="version"><small>$Revision: 1.3 $<br/>Last modified $Date: 2007/02/23 08:46:12 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>The POMA Web Site</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+       blockquote {
+       font-size: 9pt;
+       font-style: italic;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+      <p>&lt;&lt; <a href="sjauiga_permalinks.html">URI structure and permalinks</a> |
+      <a href="sjauiga_toc.html">Table of Contents</a> |
+      <a href="sjauiga_user_interface.html">User interface</a> &gt;&gt;</p>
+
+      <div class="level2">
+	<h2>The POMA Web Site</h2>
+	<p>The Poma manuscript has got an entirely new web site, which
+	is <a
+	href="http://udvikling.kb.dk/sjauiga/implementation.plan.html#manus">option
+	1</a> of the two possibilities pointed out in our original
+	plan.</p>
+
+	<p><a
+	href="http://www.kb.dk/permalink/2006/poma/info/es/frontpage.htm">The
+	Poma web site</a> is a repository containing a digitized
+	version, a transcription and finally research reports in
+	relation to the web site. From a digital library perspective
+	it's almost a vision come true: A digitized version of a
+	unique work in a hypertextual symbiosis with research on that
+	work.</p>
+
+	<h3>The digitized manuscript</h3>
+
+	<p>The presentation of the digitized work and its
+	transcription is built upon data from three sources:</p>
+
+	<ol>
+	  <li>The data stored in the 
+<a href="http://base.kb.dk/manus-api/get-mets-metadata.jsp?app=manus&amp;doc=253">Manus application retrieved as METS</a></li>
+	  <li>The <a href="http://img.kb.dk/mets/poma/tei/Poma-parsed.xml">TEI transcription of the manuscript</a></li>
+	  <li>The tables of contents in <a
+	  href="http://test.kb.dk/elib/mss/poma/indices/indice-en.htm">English</a>
+	  and <a
+	  href="http://test.kb.dk/elib/mss/poma/indices/indice-en.htm">Spanish</a>
+	  and the bilingual <a
+	  href="http://test.kb.dk/elib/mss/poma/survey.htm">table of
+	  drawings</a></li>
+	</ol>
+
+	<p>The various tables of contents were first translated from
+	HTML 4.0 to xhtml 1.0 using html tidy, and from that via XSLT
+	into xml lists, using the text encoding initiative DTD. Of the
+	three files we got four (two languages and two lists). These
+	xml conten This resource is partly
+	integrated into the same graphical profile as the manuscript
+	itself. t lists are now maintained manually.</p>
+
+	<p>The processing of the data is performed using shell and
+	XSLT scripts, which are available in the <a
+	href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/poma/">poma
+	project</a> in the CVS repository.</p>
+
+	<p>Application is built using two pass transformation of the
+	input data from the input XML formats. The TEI transcription
+	into a set of xhtml pages, one per physical page. The METS
+	file is similarly transformed into xhtml pages, one per
+	language and page.</p>
+
+	<p>The resulting xml and xhtml pages are stored in the <a
+	href="./sjauiga_cache.html">Sjauiga file cache</a>. The actual
+	presentation from inside the CMS is performed using java/jsp
+	and XSLT.</p>
+
+	<p>The various transformations needed in the first pass can
+	studied in the shell script where they are performed</p>
+
+	<pre>
+
+#!/bin/sh
+
+#
+# Create the HTML needed for presenting images
+#
+xsltproc images-generator.xsl poma-mets.xml
+
+#
+# Create HTML instances of the table contents in two languages
+#
+xsltproc --param lang "'en'" --param mode "'text'" create-html-list.xsl  \
+    toc.xml.en > toc.html.en
+
+xsltproc --param lang "'es'" --param mode "'text'" create-html-list.xsl  \
+    toc.xml.es > toc.html.es
+
+#
+# Create HTML instances of the table of drawings
+#
+xsltproc --param lang "'en'" --param mode "'image'" create-html-list.xsl  \
+    table-of-images.xml.en > table-of-images.html.en
+
+xsltproc --param lang "'es'" --param mode "'image'" create-html-list.xsl  \
+    table-of-images.xml.es > table-of-images.html.es
+
+#
+# Finally create HTML pages of the transcribed content
+#
+xsltproc render-pages.xsl tei/Poma-parsed.xml
+
+
+	</pre>
+
+	<p>The second pass is performed on delivery, using JSP and
+	XSLT. The <a
+	href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/dk.kb.dup.mets/src/permalink/2007/poma/">JSP
+	delivering the resource</a> is a part of the dk.kb.dup.mets
+	OpenCms module.</p>
+
+	<p>The final transformation before delivery is made in <a
+	href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/poma/make-page.xsl">make-page.xsl</a></p>
+
+	<p>There is a search engine prototype available on
+	<a href="http://udvikling.kb.dk:7777/manus-searcher/poma-search.jsp">http://udvikling.kb.dk:7777/manus-searcher/poma-search.jsp</a>.</p>
+
+
+	<h3>The resource collection</h3>
+
+	<p>As mentioned above, the Poma Web Site comes with an
+	extensive digital collection of research papers and resources
+	related to the Poma manuscript. See the <a
+	href="http://www.kb.dk/permalink/2006/poma/info/en/docs/index.htm">list
+	of resources</a>.</p>
+
+	<p>The entire collection of documents where cleaned
+	extensively using html tidy but also manually edited for
+	correcting markup and URLs. This resource is partly
+	integrated into the same graphical profile as the manuscript
+	itself. A few exceptions exists documents</p>
+
+	<ul>
+	  <li>whose interface where implemented using frames</li>
+	  <li>including extensive tabular data</li>
+	</ul>
+
+	<p>are delivered in original version from www2.kb.dk.</p>
+
+      </div>
+    </div>
+    <p class="version"><small>$Revision: 1.7 $<br/>Last modified $Date: 2007/02/28 15:01:21 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

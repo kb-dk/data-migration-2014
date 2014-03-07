@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Migration of old applications to the content management environment</title>
+    <link rel="stylesheet"
+          href="./html_print.css"/>
+  </head>
+  <body>
+    <div class="level1">
+      <h1 id="title" class="title">Migration of old applications to the Royal
+      Library's content management environment</h1>
+
+      <p class="author">Jacob Larsen and Sigfrid Lundberg<br/>
+      The Royal Library<br/>
+      Søren Kierkegaards Plads<br/>
+      Copenhagen</p>
+
+      <blockquote class="abstract">
+	<strong>Abstract</strong> -- This document aims att giving an
+	overview of the various services provided by DUP, and what can
+	be done in order to (i) secure this data for future
+	use, (ii) incorporate their different user interfaces into the
+	new Content Management System implemented by the Royal Library.
+      </blockquote>
+      <blockquote class="abstract">
+	By the first point we understand that the data should be
+	available in a portable format which should be able to
+	withstand the wear and tear of time and outlive the
+	technologies used for deploying them. By the second point we
+	understand that the format used for storing the data should be
+	such these data should be easily rendered in a user friendly
+	manner from inside the CMS using industry standard
+	technologies. It should also be easy to import the data into
+	search engines such as Primo from ExLibris.
+      </blockquote>
+
+      <div class="level2">
+	<h2 id="intro">Introduction</h2>
+
+	<p>User satisfaction is the prime goal of any Internet
+	information service. Crucial to a positive user experience is
+	the usability of the search and navigation systems combined
+	with clear presentation of data. The user must obviously find
+	the data that he or she percieves as relevant for the problems
+	that triggerd his or her information seeking behaviour.</p>
+
+	<p>During the last five years or so, the call for ease of use
+	of information systems has triggered new views on the use
+	metadata. Earlier metadata systems were primarily used for
+	supporting advanced search forms, whereas today the emphasis
+	is to use metadata for the clustering of resources and for
+	navigation.</p>
+
+	<p>The acquisition of the Primo search portal is an important
+	step towards a more efficient use of the Royal Library's
+	electronic resources, both those licensed and those produced
+	in house. This paper describes a program that will</p>
+
+	<ul>
+	  <li>make digitized resources accessible from
+	  inside the new content managagement environment</li>
+	  <li>make export of metadata from the Royal Library's
+	  digitization projects easier; data that may then be imported
+	  into Primo</li>
+	</ul>
+
+	<div class="level3">
+	  <h3 id="intro.problems">Executive Summary of our Proposal</h3>
+
+	  <p>In this and the following section we propose actions. In
+	  order to simplify for readers we employ the typographic
+	  convention that, whenever we propose some thing the word
+	  propose appear in <strong><em>bold italics</em></strong>.</p>
+
+	  <p>A majority of the digital resources provided by the Royal
+	  Library have lead a life independent from the main web site
+	  <a href="http://www.kb.dk/">www.kb.dk</a> having
+	  base.kb.dk as their home. Their age and quality differ
+	  widely; some of them are quite up to date and of good
+	  quality. Other are old and built using technologies no
+	  longer supported by the library's technical platform. Some
+	  of the oldest and poorest were built as interimistic
+	  solutions (i.e., they were never meant to be permanent).
+
+	  There are the five purely bibliographic databases:
+	  <a href="#djb">Dansk Juridisk Bibliografi</a>,
+	  <a href="#soc">Dansk Sociologisk Bibliograpfi</a> and 
+	  <a href="#dmf">Dansk Musik Fortegnelse</a>.
+
+	  The services <a href="#he">Håndskriftsafdelingens
+	  Erhvervelser</a> and <a href="#hb">Håndskriftsafdelingens
+	  Brevdatabase</a> belong to this category as well, but to us
+	  they seem a bit more important, since they actually
+	  catalogue some of our own collections. We
+	  <strong><em>propose</em></strong> that these two databases
+	  are converted, the former for inclusion in REX and the
+	  latter for producing a new seperate database comprising all
+	  letters, i.e., also those catalogued in REX. We
+	  <strong><em>propose</em></strong> that it should be
+	  searchable with respect to senders and recievers of
+	  messages. Furthermore, we <strong><em>propose</em></strong>
+	  that the remaining three are kept as they are for later
+	  inclusion in Primo at some later stage.</p>
+
+	  <p>A second category of service is ones containing
+	  digitized material.
+
+	  These are 
+
+	  <a href="#hca">H.C. Andersens Dagbøger</a>,
+
+	  the two manuscript services
+	  
+	  <a href="#hsk">HSK</a> and <a href="#manus">MANUS</a>
+
+	  and finally the various services providing sheet music, i.e.,
+
+	  <a href="#lum">Lumbye Online</a>,
+	  <a href="#musman">Hartman</a> and
+	  <a href="#mus">MUS</a>.
+
+	  It seems to us that they have been built without a proper
+	  understanding of the complexity of the content to be stored
+	  in them, and with insufficient guidance by functional
+	  specifications. The data models behind them has not been
+	  flexible enough to successfully accommodate the data which
+	  is there today, which have been shoe-horned into the base
+	  stretching the semantics of the database schemas far beyond
+	  their intended design. In particular neither of the
+	  manuscript databases have been capable of storing a proper
+	  table of content for the ditigized works, making it hard to
+	  navigate the resources in any other way than by browsing
+	  from image to image. It has further been impossible to
+	  assign metadata to parts of manuscripts. The databases
+	  contain HTML markup, among other things hard coded hypertext
+	  links back to various documents in the current web site,
+	  making it more or less impossible to integrate the data into
+	  a new refurbished web.</p>
+
+	  <p>We <strong><em>propose</em></strong> the export these
+	  four services into a new format described below. That means
+	  that we will build new user interfaces for all of
+	  them (One application that can handle all four services). 
+	  However, there will not be any new editorial
+	  interfaces. I.e., the Oracle implementations will still be
+	  used for data entry.</p>
+
+	  <p>In our view, we need a capable and modern bibliographic
+	  database which need to be able to handle metadata of
+	  different level complexity, such as
+
+	  <a href="http://dublincore.org/documents/dcmi-terms">DCMI Terms</a>,
+	  <a href="http://www.loc.gov/standards/mods/">Metadata Object
+	  Description Schema</a> (MODS)
+
+	  and <a href="http://www.loc.gov/standards/marcxml/">MARCXML</a>.
+
+	  We <strong><em>propose</em></strong> that Primo should be
+	  the main vehicle for searching this kind of metadata. A
+	  crude interimistic solution has to be provided until that
+	  software become available.</p>
+
+	  <p>However, for the navigation and presentation of diverse
+	  kinds of digitized data, including text, sound and video, we
+	  need systems capable of handling metadata describing the
+	  interiors of these resources. This involves the search and
+	  navigation inside ordered (and sometimes overlapping)
+	  hierarchies of content objects. This requires that searching
+	  be combined with navigation inside complex resources. The
+	  data formats used should thus accommodate both traditional
+	  bibliographical data, but in addition to that it need to be
+	  able to describe the relations between sets of contents. The
+	  new data format should</p>
+    
+	  <ul>
+	    <li>be able to describe individual content objects as well
+	    as sets of such objects. Such descriptions should be able
+	    to include more or less arbitrary relations between
+	    objects.</li>
+
+	    <li>be able to describe objects described in the same
+	    format, i.e., it should be able to use for collection
+	    level description.</li>
+
+	    <li>be reusable for different purposes in house</li> 
+
+	    <li>be capable to live beyond the expected life
+	    span of the various KB current technical platform</li> 
+	    <li>make data reusable for external partners, e.g., via
+	    XML Web Services, OAI-PMH and similar protocols but also
+	    future emerging technologies.</li>
+
+	    <li>be well documented.</li>
+
+	    <li>form a basis for a sustainable hypertext linking
+	    policy (see below)</li>
+	  </ul>
+
+	  <p>To our knowledge, the only format that fulfill these
+	  requirements is the
+
+	  <a href="http://www.loc.gov/standards/mets/">Metadata Encoding
+	  and Transmission Standard</a> (METS).
+
+	  In particular it is capable of describing more or less
+	  arbitrary relations between objects, and in addition assign
+	  metadata to each component. METS files may be transformeed
+	  into other formats for navigation of virtually any digital
+	  resource. Examples from other digital libraries include
+	  using it for generating SMIL for the synchronization of
+	  image and audio and to HTML for navigation text and
+	  images.</p>
+
+	  <p>We <strong><em>propose</em></strong> that this is done
+	  for the purpose of cleaning the data and for generating a
+	  viewer that can operate inside the new web site with the
+	  technology available there. However we also
+	  <strong><em>propose</em></strong> that we should evaluate
+	  METS for a wider deployment in our digitization
+	  projects.</p>
+
+	  <p>We <strong><em>propose</em></strong> that work level
+	  metadata are exported using OAI-PMH for use by Primo in
+	  house and by partners elsewhere.</p>
+
+	  <p>Finally, we <strong><em>propose</em></strong> METS should
+	  be used for the description of collections of METS metadata,
+	  hence the requirement of a metadata system capable of
+	  collection level description.</p>
+
+	</div>
+
+
+	<div class="level3">
+	  <h3 id="cms">How can these resources be integrated in the CMS</h3> 
+
+	  <p>By integration we understand two things:</p>
+
+	  <ol>
+	    <li>Resources should be easy for the editors to use</li>
+	    <li>Resources should be easy for the user to find</li>
+	  </ol>
+
+	  <h3>Resources should be easy for editors to use</h3>
+
+	  <p>
+	    <i>Scenario 1:</i> 
+
+	   An editor wants an index of certain collection of
+	   manuscripts in his webpage. He finds (not necessarily in
+	   the CMS) the METS file, describing the collection.  Uploads
+	   the file into the CMS, in the folder where he wants the
+	   index. Chooses template ('Mets index').  Then he uploads
+	   the folder containing the METS files of the
+	   manuscripts. Chooses template ('Mets Navigator') on the
+	   folder.  And now he has a webpage with manuscripts.</p>
+
+	  <p>
+	    <i>Scenario 2:</i>
+
+	   Each METS file is uploaded once in a METS repository and
+	   the template property is set on this folder. This folder is
+	   used as a METS gallery in OpenCms. An editor can then
+	   choose which collection of manuscripts he wants, and
+	   include them into his page, using the gallery
+	   functionality.</p>
+
+	  <p>The first solution gives the editor a little more work,
+	  but makes it more flexible for him when he wants to add a new
+	  METS file. The second option is easy to use for the editor,
+	  and gives an administrator the work of uploading METS files
+	  to the gallery, making sure that their content is described,
+	  and their names are meaningful.</p>
+
+	  <h4>Resources should be easy for the users to find</h4> 
+
+	  <p>Every source is indexed with Lucene. An "agent" is made,
+	  to customize a subset search. In that way the editors can
+	  include a search form only searching in relevant material as
+	  they like, making it easy for our users to locate any
+	  resource.</p>
+
+	  <h4>What is needed in the CMS?</h4>
+	  <ul>
+	    <li>Two open cms templates
+	    <ol>
+	      <li>One for displaying a single METS file</li>
+	      <li>One for displaying METS files describing METS
+	      files. (Might be the same as 1, with another css)</li>
+	      </ol>
+	    </li>
+	    <li>One search form agent (Could come from Primo)</li>
+	    </ul>
+	  </div>
+      
+	<div class="level3">
+	  <h3 id="uris">A note on URI maintenance</h3>
+
+	  <p><a href="http://www.w3.org/Provider/Style/URI">URLs
+	  don't change, people change them</a>, says Tim Berners
+	  Lee.
+
+	  There is no force of nature that makes URI invalid. If one
+	  wants cool URLs that don't change, then one need a good
+	  URI maintenance policy, like the
+
+	  <a href="http://www.w3.org/Consortium/Persistence">one</a> used
+	  by the World-wide Web consortium.
+
+	  The URI coolness was not an issue for the former colleagues
+	  of us who built the services, since coolness was not a part
+	  of the functional specifications for their work. We cannot
+	  preserve the URIs which is the fruit of their work, however
+	  we will try to invent a redirection scheme that will give
+	  useful hints to users.
+
+	  We <strong><em>propose</em></strong> that the Royal Library
+	  formulates persistence policy for the kb.dk domain, which
+	  should ensure that "perma-links" may be assigned to
+	  significant intellectual content published within our
+	  domain.
+
+	  </p>
+	  
+	  </div>
+	</div>
+
+
+	<div class="level2">
+
+	  <h2 id="digitazation.services">Digitization services</h2>
+
+	  <p>The following seven services are of very different
+	  qualities, age and other characteristics. For technical and
+	  other reasons we have to make a significant effort in order
+	  to migrate the first five of them, whereas this is less
+	  critical for the remaining two.</p>
+
+    
+
+    <div class="level3">
+
+      <h3 id="hsk">HSK (The previous generation manuscript application)</h3>
+    
+      <p>Contains 62 digitized, comprising about 11000 images.</p>
+
+      <h4 id="hsk.stakeholders">Stake holders</h4>
+
+      <ul>
+	<li>DUP Developers - development and technical owners of the
+	application</li>
+	<li>Manuscript Department</li>
+      </ul>
+
+      <h4 id="hsk.technology">Current technology</h4>
+
+      <p>Some objects are overloading the datamodel, which contains 4
+      tables of which only two are used.</p>
+
+      <h4 id="hsk.recommendations">Recommendations</h4>
+
+      <p>The ideas behind this service have been deployed in quite a few
+      services and applications (<a href="#lum">LUM</a>, <a
+      href="#musman">MUSMAN</a> and <a href="#mus">MUS</a>). The
+      quality of all of them is wanting, and the databases contain a
+      lot of dirty markup which makes the data hard to reuse without
+      some investment in datamining and semi-automatic cleaning.</p>
+
+      <p>As regards the content of this database, it should ideally be
+      merged with the content of <a href="#manus">MANUS</a>, which,
+      however, we see as a too large task to perform in connection
+      with the proposed projects. Still we propose the building of a
+      new joint application with the following properties.</p>
+
+      <ul>
+	<li>Capability of exporting work level metadata for search and
+	navigation within the new web site.</li>
+	<li>Have a flexible methods for describing the structure of
+	the resources within the collection.</li>
+	<li>Be extensible enough to permit the transfer of other
+	services to this framework.</li>
+      </ul>
+
+      <p>We suggest that the <a
+      href="http://www.loc.gov/standards/mets/">METS</a> should be
+      used for this purpose. We would gain the following: First, a
+      single application could deliver all four services, second we
+      would get clean data that could be reused in our services or
+      shared with other libraries, and finally we would be able to
+      evaluate this metadata format for the possibility of future
+      deployment in our cultural heritage services.</p>
+
+      <p>We have made a demonstrator that show that Mets will do the
+      job for the data we possess. In spite of that there is risk that
+      we find that METS will not be ideal for future deployment; if
+      that will be the case the cost of is fairly small since the date
+      is now clean and can be transformed into other formats or
+      digested into a new database.</p>
+
+    </div>
+
+    <div class="level3">
+
+      <h3 id="manus">MANUS</h3>
+
+      <p>The Royal Library's current manuscript services. It is a
+      replacement of the <a href="#hsk">HSK service</a>.</p>
+
+      <ul>
+	<li>Contains 645 digitized manuscripts</li>
+	<li>Altogether the service contains approx. 60000 images. Some
+	2300 of them have some form of transcription</li>
+      </ul>
+
+      <h4 id="manus.stakeholders">Stake holder(s)</h4>
+
+      <ul>
+	<li>DUP Developers - development and technical owners of the application</li>
+	<li>Manuscript Department</li>
+	<li>Centre for Orientalia and Judaica</li>
+	<li>Music and Theatre Department</li>
+      </ul>
+
+      <h4 id="manus.technology">Current technology</h4>
+    
+      <ul>
+	<li>Some transcriptions, notably the POMA manuscript are
+	encoded using TEI. We do not know where the XML source is
+	stored.</li>
+	<li>The service has a failry simple user interface but an
+	advanced data model.</li>
+	<li>Known problems are that the service cannot handle works in
+	multiple volumes and that texts in multiple languages cause
+	problems (cf., <a
+	href="http://udvikling.kb.dk/twiki/bin/view/DDA/ManusNy">Twiki
+	page</a>).</li>
+      </ul>
+
+      <h4 id="manus.recommendations">Recommendations</h4>
+
+      <p>As noted <a href="#hsk.recommendations">above</a> the HSK
+      service should ideally be merged into this application, or
+      ideally into the same framework as HSK. We hesitate to give any
+      particular recommendations on this service, but give two
+      possibilities (of which we propose the first):</p>
+
+      <ol>
+	<li>We do the translation as for HSK, and for POMA (and if
+	there are any other TEI fulltexts) we build an interimistic
+	structure somewhat like the one we built in the <a
+	href="http://www.kb.dk/proto/gmp/">Gustaf Munch Perdersen</a>
+	site.</li>
+	<li>We refrain from doing anything until the Manuscript
+	department has decided on whether to adopt some other
+	description standard (Ivan Boserup has proposed the use of <a
+	href="http://www.tei-c.org/release/doc/tei-p5-doc/html/MS.html">TEI
+	P5 Manuscript description</a> which is used by <a
+	href="http://www.hum.ku.dk/ami/amcol.html">Arna Magnusson
+	Collection</a> of Copenhagen University and Lund university
+	library in <a href="http://laurentius.lub.lu.se/">St
+	Laurentius Digital Manuscript Library</a>). We do not see any
+	reason to why such more specialist formats not could be used
+	together with (or perhaps even transformed into) METS.</li>
+      </ol>
+
+    </div>
+
+    <div class="level3">
+
+      <h3 id="lum">Lumby Online (LUM)</h3>
+
+      <ul>
+	<li>403 records</li>
+	<li>Each record corresponds to one printed edition of sheet
+	music by Lumbye. Searchable by title, publication year and an
+	identifier ("dan fog nr")</li>
+	<li>Sheet music downloadable as PDF</li>
+      </ul>
+
+      <h4 id="lum.stakeholders">Stake holders</h4>
+
+      <ul>
+	<li>DUP Developers - development and technical owners of the application</li>
+	<li>Music and Theatre Department</li>
+      </ul>
+
+
+      <h4 id="lum.technology">Current technology</h4>
+
+      <p>The same data model as in HSK, but only one table is
+      used. Since the images has been transformed into multipage PDF,
+      there is no need for page level data.</p>
+
+      <h4 id="lum.recommendations">Recommendations</h4> 
+
+      <p><a href="#hsk.recommendations">See HSK</a></p>
+
+    </div>
+
+    <div class="level3">
+
+    <h3 id="musman">Hartmann and Heise (MUSMAN)</h3>
+     <ul>
+       <li>Sheet music, contains works by Hartman</li>
+       <li>About 4000 records.</li>
+     </ul>
+
+     <h4 id="musman.stakeholders">Stake holders</h4>
+
+     <ul>
+       <li>DUP Developers - development and technical owners of the application</li>
+       <li>Music and Theatre Department</li>
+     </ul>
+
+     <h4 id="musman.technology">Current technology</h4>
+
+     <ul>
+       <li>Has, in principle exactly the same data model as HSK, with
+       one additional table "projekt", which contains one single
+       project.</li>
+       <li>There is a simple view application.</li>
+       <li>Some textual content containing dirty HTML mark-up</li>
+     </ul>
+
+    <h4 id="lum.recommendations">Recommendations</h4> 
+
+    <p><a href="#hsk.recommendations">See HSK</a></p>
+
+    </div>
+
+    <div class="level3">
+
+     <h3 id="mus">MUS</h3>
+
+     <p>Contains parts of Danmarks Digital Sheet Music Library</p>
+
+     <ul>
+       <li>Comprises 12 digitalization projekts</li>
+       <li>1500 pages</li>
+       <li>3 simple views (2,3 or 4 search fields</li>
+     </ul>
+
+     <h4 id="mus.stakeholders">Stake holders</h4>
+
+     <ul>
+       <li>DUP Developers - development and technical owners of the application</li>
+       <li>Music and Theatre Department</li>
+     </ul>
+
+     <h4 id="mus.technology">Current technology</h4>
+     <ul>
+       <li>Has, in principle exactly the same data model as HSK, with
+       one additional table "projekt".</li>
+       <li>There is a simple view application.</li>
+       <li>Some textual content containing dirty HTML mark-up</li>
+     </ul>
+
+     <h4 id="lum.recommendations">Recommendations</h4> 
+     
+     <p><a href="#hsk.recommendations">See HSK</a></p>
+
+    </div>
+
+    <div class="level3">
+      <h3 id="port">Portrætregistranten</h3>
+
+      <p>Stand alone application, for registration of danish
+      portraits.  Portrætregistranten is relatively new, and has a
+      complex administrative application, which is used quite often.</p>
+
+     <h4 id="port.stakeholders">Stake holders</h4>
+     <ul>
+       <li>DUP Developers - development and technical owners of the application</li>
+       <li>Kort og Billedafdelingen</li>
+     </ul>
+
+     <h4 id="port.technology">Current technology</h4>
+
+     <p>The data are in an Oracle database, encoded in UTF-8. The
+     webapplication is coded in jsp and is located on the application
+     server.</p>
+
+     <h4 id="port.recommendations">Recommendations</h4> 
+
+     <p>We recommend that the current interface is stripped down to the
+     input-forms and the submit button.  The html code is rewritten,
+     to take advantage of the new KB design, and displayed through an
+     IFrame.  In the CMS we need to make a .jsp with headings,
+     search-help, navigation etc. which parses the current locale to
+     Portrætregistranten.</p>
+    </div>
+
+    <div class="level3">
+
+      <h3 id="hca">H.C. Andersens Dagbøger (HCA)</h3>
+
+      <p>A text critical edition of H.C. Andersens dairies has been
+      digitized. The content comprises 12 volumes of text and digital
+      facsimiles of this modern printed text.</p>
+
+      <h4 id="hca.stakeholders">Stake holders</h4>
+      <ul>
+	<li>DUP Developers - development and technical owners of the application</li>
+	<li>Manuscript Department</li>
+      </ul>
+
+      <h4 id="hca.technology">Current technology</h4>
+      <ul>
+	<li>The service has many similarities with <a
+	href="http://www.adl.org">ADL</a> and is in good condition. The
+	source text is in text encoded initiative XML.</li>
+	<li>The data model is simple in comparison with ADL, comprising
+	only 6 tables, and 4 indexes.</li>
+	<li>Possible to search full text, much like ADL.</li>
+      </ul>
+
+      <h4 id="hca.recommendations">Recommendations</h4>
+
+      <p>In the long run we have too many applications for searching
+      and <a href="http://www.tei-c.org/">TEI XML</a>; <a
+      href="#manus">MANUS</a>, <a href="http://www.adl.dk/">ADL</a>
+      and HC Andersen Dagbøger all contain this feature.</p>
+
+      <p>For the time being, we recommend that the transfer to the CMS
+      environment is deferred to a later stage, in conjunction with a
+      redesign of the ADL service.</p>
+
+    </div>
+  </div>
+
+
+  <div class="level2">
+    <h2 id="services">Bibliographic Services</h2>
+
+    <p>Of the services described below, we find the two first more
+    important, and the latter three less important. The manuscript
+    services are access points to some of our own collections.</p>
+
+    <div class="level3">
+
+    <h3 id="hb">Håndskriftsafdelingens Brevdatabase</h3>    
+
+    <h4>Stakeholders</h4>
+
+    <ul>
+      <li>DUP Developers - technical owners of the application</li>
+      <li>IT / REX group - owners of the newer part of the Bibliography</li>
+      <li>Håndskrifts afdelingen</li>
+    </ul>
+    <h4>Current technology</h4>
+
+    <p><i>Data:</i> are stored in Oracle, in three tables, holding
+    sender and receiver information.  They maybe available in txt
+    format.  <i>Publication:</i> The search application is written in
+    plsql.  <i>Structure: </i> All data semi structured.</p>
+
+    <h4>Recommendations</h4>
+
+    <p>Letters are popular source material among researchers in many
+    disciplins within the humanities. Therefor we propose that the
+    database of letters should be reimplemented such that REX
+    manuscript records containing information on senders and recievers
+    of letters are indexed in a seperate index such that all objects
+    of this kind will be searchable in a uniform way.</p>
+
+    </div>
+
+    <div class="level3">
+
+      <h3 id="he">Håndskriftsafdelingens Erhvervelser (1924-1987)</h3>    
+
+      <h4>Stakeholders</h4>
+
+      <ul>
+	<li>DUP Developers - technical owners of the application</li>
+	<li>IT / REX group - owners of the newer part of the Bibliography</li>
+	<li>Håndskrifts afdelingen</li>
+      </ul>
+
+      <h4>Current technology</h4>
+
+      <p><i>Data:</i> are stored in Oracle, in three fields.  They
+      maybe available in txt format.  <i>Publication:</i> The search
+      application is written in plsql.  <i>Structure: </i> All data
+      are highly unstructured.</p>
+
+      <h4>Recommendations</h4>
+
+      <p>We recommend the same solutions as <a href="#djb">Dansk
+      Juridisk Bibliografi</a>.</p>
+
+    </div>
+
+
+    <div class="level3">
+
+      <h3 id="djb">Dansk Juridisk Bibliografi (1988-1997)</h3>    
+
+      <h4>Stakeholders</h4>
+
+    <ul>
+      <li>DUP Developers - technical owners of the application</li>
+      <li>IT / REX group - owners of the newer part of the Bibliography</li>
+      <li><a
+      href="http://base.kb.dk/pls/fag_web/fag_www.fagreferenter_liste?p_fg_id_nr=16000"
+      target="_blank">Bo Søgaard Jensen</a> - main responsible for
+      "law" at KUB</li>
+    </ul>
+
+    <h4>Current technology</h4>
+
+    <p><i>Data:</i> are stored in Oracle. But are also available in
+     txt format. (slu has a copy).  <i>Publication:</i> The search
+    application is written in plsql.  <i>Structure: </i> All data are
+    highly unstructured.</p>
+    <h4>Recommendations</h4>
+
+    <p>We suggest that this service, is merged with the data in REX
+    (holdings from 1998-) in one of the following ways:</p>
+    <ol>
+     <li>The data is being handed over to IT, who uses Primo for
+     data mining, indexing and possible for storing. The service will
+     be closed from the first of January 2007 until it may be reopened
+     inside Primo.</li>
+     <li>We get the data from REX, and create one merged index.
+       <ul>
+	 <li>We make the datamining (convert the data into the
+	 standard recommended in the introdiction</li>
+	 <li>Once of the Stakeholders confirm that the Datamining has succeeded</li>
+	 <li>We create an index</li>
+	 <li>We get the data from REX, and index them</li>
+	 <li>We merge the indices</li>
+	 <li>We write an application for displaying bibliographical data.</li>
+       </ul>
+     </li>
+    </ol>
+
+    <p><i>Additional notes:</i> The application suggested above is a
+    general purpose application for showing bibliographical data. The
+    Application should be able to display both DANMarc and Dublin
+    Core records.<br/> This application could possibly be an
+    "indholdskomponent" in OpenCms terminology, acting as a
+    KB-standardized way of showing bibliographical data.</p>
+
+    </div>
+
+    <div class="level3">
+
+    <h3 id="soc">Dansk Sociologisk Bibliografi (1987-1995)</h3>    
+
+    <h4>Stakeholders</h4>
+
+    <ul>
+      <li>DUP Developers - technical owners of the application</li>
+      <li>IT / REX group - owners of the newer part of the Bibliography</li>
+    </ul>
+
+    <h4>Current technology</h4>
+
+    Same as Dansk Juridisk Bibliografi
+
+    <h4>Recommendations</h4>
+
+    Same as <a href="#djb">Dansk Juridisk Bibliografi</a>
+
+    </div>
+   
+
+
+    <div class="level3">
+    
+    <h3 id="dmf">Dansk Musik Fortegnelse (1899 - 1930)</h3>    
+    <h4>Stakeholders</h4>
+    <ul>
+      <li>DUP Developers - technical owners of the application</li>
+      <li>IT / REX group - owners of the newer part of the Bibliography</li>
+      <li>Musik Afdelingen</li>
+    </ul>
+    <h4>Current technology</h4>
+    <p><i>Data:</i> are stored in Oracle, in four fields.
+    They maybe available in txt format.  
+     <i>Publication:</i> The search application is written in plsql.  
+    <i>Structure: </i> All data semi structured.</p>
+    <h4>Recommendations</h4>
+    <p>We recommend the same solutions as Dansk Juridisk Bibliografi,
+    with the following modifications. The Ancestor in REX, are divided
+    in two bases. One Holding 1931-1971 and one holding "the
+    rest". These has to be analyzed and merged, in order to make one
+    global index. </p>
+    </div>
+
+  </div>
+
+  
+
+  <div class="level2">
+    <h2 id="feeding">Feeding Primo and the National Danish Dataset</h2>
+    It is essential for this project to be a success, that data is searchable through Primo, 
+    and become a part of the National Danish Dataset. The feeding can be done in three ways:
+    <ul>
+      <li>Through OAI-PMH</li>
+      <li>Through xml webservices</li>
+      <li>using copy (ftp, scp etc) </li>
+    </ul>
+    <div class="level3">
+      <h3 id="feeding.oai">OAI-PMH</h3>
+      <p> Open Archive Initiatives Protocol for Harvesting Metadata, is a protocol that allows any remote client to 
+      retrieve our metadata, and store them in a local repository,
+      using them for an unspecified purpose. Through OAI we do not give any search interface
+      or any other logic to the client, it is up to the client to interpret the data.</p>
+      <p>Both Primo and the National Danish Dataset are OAI enabled.</p>
+    </div>
+    <div class="level3">
+      <h3 id="feeding.xml">XML Webservices</h3>
+        <p>XML webeservices is another way of feeding data to remote clients. The webservice
+	lets clients interact (search, browse, view metainfo, etc) with the data, not 
+	copy it to a local repository.</p>
+	<p>The National Danish Dataset might accept a XML webservice, Primo doesn't</p>
+    </div>
+    <div class="level3">
+      <h3 id="feeding.copy">Copy</h3>
+      <p>The last way of feeding data, is by simply copy it to a remote client.</p>
+      <p>Primo accepts this, and any user of the National Danish Dataset might also. However every time the
+      local data is updated, manually copying is required</p>
+    </div>
+    <div class="level3">
+      <h3 id="feeding.recommendations">Recommendations</h3>
+      <p>We recommend that an OAI server for all the data. Since it seems to be
+      a good way of exposing the data to a number of clients. Any other solution will
+      require implementation of more than one service</p>
+    </div>
+  </div>
+
+  <div class="level2">
+    <h2 id="projectplan">Project plan</h2>
+
+<table>
+<tr><th rowspan="2" style="vertical-align:top">Task</th><th rowspan="2" style="vertical-align:top">Task name</th><th colspan="10">Week</th></tr>
+<tr><th>40</th><th>41</th><th>42</th><th>43</th><th>44</th><th>45</th><th>46</th><th>47</th><th>48</th><th>49</th></tr>
+  <tr>    <td>1 a</td>
+    <td>Formation of reference group</td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>1 b</td>
+    <td>Specification of tasks for stake holders</td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>1 c</td>
+    <td>Low level requirements</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>2 a</td>
+    <td>Data formats and data modelling</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>2 b</td>
+    <td>Bibliographic format</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>2 c</td>
+    <td>Format for structural description of resources</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>3 a</td>
+    <td>Specification of search application</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>3 b</td>
+    <td>View application</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>3 c</td>
+    <td>Software (Modules and classes)</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>4 a</td>
+    <td>Data mining</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>4 b</td>
+    <td>Data normalization</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>4 c</td>
+    <td>CVS repository</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>4 d</td>
+    <td>Data review</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   </tr>
+  <tr>    <td>5 a</td>
+    <td>Implementation of view application</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>5 b</td>
+    <td>Integration with CMS</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>5 c</td>
+    <td>Application review</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   <td style="background-color:black"><img src="./black.gif" alt="#" style="width:15px;height:15px"/></td>
+   </tr>
+  <tr>    <td>6 a</td>
+    <td>Integration with Primo (April 2007)
+</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+  <tr>    <td>6 b</td>
+    <td>Web service for Def (April 2007)
+</td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   <td style="background-color:white"></td>
+   </tr>
+</table>
+
+
+      </div>
+    </div>
+    <pre>
+
+    </pre>
+  </body>
+</html>

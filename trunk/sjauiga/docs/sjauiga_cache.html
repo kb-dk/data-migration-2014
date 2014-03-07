@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>METS File cache</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+       blockquote {
+       font-size: 9pt;
+       font-style: italic;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+    <p>&lt;&lt; <a href="sjauiga_mets.html">mods &amp; mets &amp; manus</a> |
+    <a href="sjauiga_toc.html">Table of Contents</a> |
+    <a href="sjauiga_indexer.html">indexer &amp; search engine</a> &gt;&gt;</p>
+
+    <div class="level2">
+    <h2>METS File cache</h2>
+
+    <p>Currently the METS files are stored on img.kb.dk in a file system</p>
+
+    <pre>
+      webext.kb.dk:/data1/kb/httpd/img.kb.dk.80/docs/mets/lum    
+      webext.kb.dk:/data1/kb/httpd/img.kb.dk.80/docs/mets/musik   
+      webext.kb.dk:/data1/kb/httpd/img.kb.dk.80/docs/mets/manus  
+      webext.kb.dk:/data1/kb/httpd/img.kb.dk.80/docs/mets/mus
+      webext.kb.dk:/data1/kb/httpd/img.kb.dk.80/docs/mets/musman</pre>
+
+    <p>Each document is in a directory of its own, named after the
+    documents ID in the original application. The cache is built using the <a
+    href="sjauiga_manus_xws_layer.html#client">get-mets-files.pl</a>
+    client which is installed on img.kb.dk.</p>
+
+    <h3>Drawbacks with the cache</h3>
+
+    <p>We are storing these in a web server, and the retrieval of a document
+    is swift and easy. It is, however, computaionally expensive to parse XML,
+    and we consider solutions that permit us to store them in parsed
+    condition, as static DOM objects.</p>
+
+    <p>We made some quick and dirty experiments with a Java object cache <a
+    href="http://www.opensymphony.com/oscache/">oscache</a>, but to us it seemed to be
+    about as expensive to read a DOM from the cache as parse a document
+    retrieved via HTTP from a static repository.</p>
+
+    <p>Alternatives are to use XML native database (eg <a
+    href="http://www.oracle.com/database/berkeley-db/xml/index.html">xmldb</a>)
+    or put them back into Oracle and XML Text</p>
+
+    </div>
+    </div>
+    <p class="version"><small>$Revision: 1.3 $<br/>Last modified $Date: 2007/02/23 08:46:12 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

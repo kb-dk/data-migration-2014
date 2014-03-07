@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>xws layer</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+      blockquote {
+      font-size: 9pt;
+      font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+    <p>&lt;&lt; <a href="sjauiga_indexer.html">Indexer &amp; search engine</a> |
+    <a href="sjauiga_toc.html">Table of Contents</a> |
+    <a href="sjauiga_permalinks.html">URI structure and permalinks</a> &gt;&gt;</p>
+
+    <div class="level2">
+    <h2 id="xws">XWS layer</h2>
+
+    <p>The XWS layer consists of a number of java classes talking with
+    Oracle via toplink. The HTTP layer is using JSP. The entire
+    package is available on the CVS in the project mets-data/java/jdev/. The package is deployed on oraclias, on context <kbd>mets-api</kbd></p>
+
+    <p>Note in particular the following packages:</p>
+
+    <pre>
+      <a href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/mets-data/java/jdev/mets-api/Model/src/dk/kb/dup/metsApi/">dk.kb.dup.metsApi</a>
+      <a href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/mets-data/java/jdev/mets-api/Model/src/dk/kb/dup/modsApi/">dk.kb.dup.modsApi</a>
+    </pre>
+
+    <p>To generate the files that need to be cached, one has to pass
+    through two steps. First one need to retrieve a list of available
+    records, secondly, one retrieves them :-). You may test the API
+    below.</p>
+
+    <h3 id="list">1. Get a list of records</h3>
+
+    <p>Scripts querying relevant Oracle databases. We have four
+    database schemas, and they have one script each.</p>
+
+    <ul>
+      <li>
+	<a href="http://base.kb.dk/manus-api/get-lum-identifiers.jsp">http://base.kb.dk/manus-api/get-lum-identifiers.jsp</a>
+      </li>
+      <li>
+	<a href="http://base.kb.dk/manus-api/get-mus-identifiers.jsp">http://base.kb.dk/manus-api/get-mus-identifiers.jsp</a>
+      </li>
+      <li>
+	<a href="http://base.kb.dk/manus-api/get-musman-identifiers.jsp">http://base.kb.dk/manus-api/get-musman-identifiers.jsp</a>
+      </li>
+      <li>
+	<a href="http://base.kb.dk/manus-api/get-manus-identifiers.jsp">http://base.kb.dk/manus-api/get-manus-identifiers.jsp</a>
+      </li>
+    </ul>
+
+    <p>The scripts source may be <a
+    href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/mets-data/java/jdev/mets-api/ViewController/public_html/">inspected</a>
+    in the CVS</p>
+
+    <h3 id="mods">2. Get a work level (MODS) record</h3>
+
+    <p>A common XWS (demo) interface for aquiring a record:</p>
+
+    <form method="get" action="http://base.kb.dk/manus-api/get-mods-metadata.jsp">
+      <p>Enter document ID <input size="4" name="doc" value="41"/><br/>
+      <input type="submit" value="Get data"/></p>
+    </form>
+
+    <h3 id="mets">3. Get a complete (METS) record</h3>
+
+    <p>The METS records are generated on the fly as needed. Takes two
+    arguments, applicaton, <kbd>app</kbd> and document ID
+    <kbd>doc</kbd>:</p>
+
+    <form method="get" action="http://base.kb.dk/manus-api/get-mets-metadata.jsp">
+      <p>Choose application <select name="app">
+      <option>manus</option>
+      <option>mus</option>
+      <option>musman</option>
+      <option>lum</option>
+    </select>
+      Enter document ID <input size="4" name="doc" value="7"/><br/>
+      <input type="submit" value="Get data"/></p>
+    </form>
+
+    <h3 id="client">4. get-mets-files.pl -- a manus XWS client</h3>
+
+    <p>Our current client is a perl script <a
+    href="http://udvikling.kb.dk/cvsweb/cvsweb.cgi/mets-data/scripts/get-mets-files.pl">get-mets-files.pl</a>. The
+    script can be operated in two modes, it can either retrieve the
+    entire collection given as an argument to the --application option
+    and store it in the directory given as an argument to the option
+    --targetdir. The other mode is for updating single documents given
+    in the --msid option. The entire usage is given below:</p>
+
+    <pre>
+
+get-mets-files.pl --application &lt;application abbreviation> \
+                  --targetdir &lt;directory> \
+                  --msid &lt;identifier>
+
+where the options have the following meaning
+        --application   should take one of of the applications
+                        manus,mus,musman,lum as argument
+and
+        --targetdir     the directory where to write the files
+        --msid          Retrieves metadata for the document with the identifier
+                        within the application
+
+
+    </pre>
+    </div>
+    </div>
+    <p class="version"><small>$Revision: 1.2 $<br/>Last modified $Date: 2007/02/21 15:23:34 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

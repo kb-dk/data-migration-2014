@@ -1,0 +1,220 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>mods &amp; mets in manus</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+       blockquote {
+       font-size: 9pt;
+       font-style: italic;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+    <p>&lt;&lt; <a href="sjauiga_architecture.html">Architecture</a> | 
+       <a href="sjauiga_toc.html">Table of Contents</a> |
+       <a href="sjauiga_cache.html">METS file cache</a> &gt;&gt;</p>
+
+    <div class="level2">
+    <h2>mods &amp; mets in manus</h2>
+
+    <p>The choice of mods &amp; mets were taken early, actually before the
+    onset of the project. (The intention was stated clearly in our project
+    plan's <a href="../implementation.plan.out.html#intro.problems">Executive
+    Summary</a>). Similar conclusions have been reached and elaborated in
+    reports from JISC's <a
+    href="http://www.jisc.ac.uk/whatwedo/services/services_techwatch/techwatch.aspx">Technology
+    and Standards Watch</a>: Please refer to Richard Gartner, 2003, <a
+    href="http://www.jisc.ac.uk/whatwedo/services/services_techwatch/techwatch/techwatch_report_0306.aspx">MODS:
+    Metadata Object Description Schema</a> and by the same author, 2002, <a
+    href="http://www.jisc.ac.uk/whatwedo/services/services_techwatch/techwatch/techwatch_report_0205.aspx">METS:
+    Metadata Encoding and Transmission Standard</a>.</p>
+
+    <p>Gartner conclusion is that "<em>METS offers a coherent overall
+    structure for encoding all relevant types of metadata (descriptive,
+    administrative and structural) used to describe digital library
+    objects</em>". That is, METS is good for digital library objects but that
+    does not mean that it is necessarily good for, say, medieval
+    manuscripts. Simply because manuscripts are not digital library
+    objects. We will return to this problem at the end of this document.</p>
+
+
+    <h3>A note on our implementation of mets &amp; mods</h3>
+
+    <p>The formal definition of each mets section below (in fine
+    print, italics) are quoted from <a
+    href="http://www.loc.gov/standards/mets/METSDocumentationdraft8.30.pdf">http://www.loc.gov/standards/mets/METSDocumentationdraft8.30.pdf</a></p>
+
+    <ol>
+      <li>
+	<p><strong>Descriptive Metadata</strong></p>
+	<blockquote>
+	  This section contains either descriptive metadata that is
+	  external to the METS document (e.g., a MARC record in an
+	  OPAC or an MODS record maintained on a WWW server), contains
+	  internally embedded descriptive metadata, or both. Multiple
+	  instances of both external and internal descriptive metadata
+	  may be included in the descriptive metadata section.
+	</blockquote>
+	<p>We are using MODS. Because of the datamodel used in the legacy
+	application, and the because of the cataloging practices that has
+	arisen we have the following kind of data in one or two languages:</p>
+	<ul>
+	  <li>author (occasionally). Author was mandatory in manus, and since
+	  the author are often unknown there are misleading texts in this field.</li>
+	  <li>title of the digitized work. Usually correct</li>
+	  <li>description, or rather introductory text</li>
+	  <li>language of the work, but the language is sometimes misleading
+	  since it is often replaced by the language of the metadata.</li>
+	  <li>annotations, i.e., notes on individual pages or parts of
+	  pagen. Some of these are made in the global annotation.</li>
+	  <li>collection and project information</li>
+	</ul>
+	
+	<p>We do not have</p>
+
+	<ul>
+	  <li>Date and place of origin. Because of the age of the material,
+	  exact dates are seldom known. We need something which is
+	  functionally equivalent with <a
+	  href="http://www.tei-c.org/release/doc/tei-p5-doc/html/MS.html#msdo">TEI
+	  P5 MS origin</a>:
+	  <pre>
+&lt;origin>
+  &lt;p>Written in &lt;origPlace>Durham&lt;/origPlace> during 
+  &lt;origDate notBefore="1125" notAfter="1175">the mid-twelfth century&lt;/origDate>.
+  &lt;/p>
+&lt;/origin></pre>
+	  This is structured data which can be used for search and
+	  navigation, but there is no way to express this as eloquently in
+	  mods or marc.
+  	  </li>
+	</ul>
+
+      </li>
+      <li>
+	<p><strong>Administrative Metadata</strong></p>
+	<blockquote>
+	  The administrative metadata section provides information
+	  regarding how the files were created and stored,
+	  intellectual property rights, metadata regarding the
+	  original source object from which the digital library object
+	  derives, and information regarding the provenance of the
+	  files comprising the digital library object (i.e.,
+	  master/derivative file relationships, and
+	  migration/transformation information). As with descriptive
+	  metadata, administrative metadata may be either external to
+	  the METS document, or encoded internally.
+	</blockquote>
+	<p>This section is currently not used in SJAUIGA</p>
+      </li>
+      <li>
+	<p><strong>File Groups</strong></p>
+	<blockquote>
+	  The file group section lists all files comprising all electronic
+	  versions of the digital object. File group elements may nest, to
+	  provide for subdividing the files by object version.
+	</blockquote>
+	<p>File Groups are used extensively in SJAUIGA. All image
+	files has an entry in a file group. The various alternative
+	view files (enlarged, rotated and whatever) are stored in a
+	seperate file group.</p>
+      </li>
+
+     <li>
+       <p><strong>Structural Map</strong></p>
+       <blockquote>
+	 The structural map is the heart of a METS document. It
+	 outlines a hierarchical structure for the digital library
+	 object, and links the elements of that structure to content
+	 files and metadata that pertain to each element.
+       </blockquote>
+       <p>It is common to create two structural maps, one for the
+       logical and one for the physical structure of a work. The
+       current version SJAUIGA only addresses the physical structure
+       of works.</p>
+
+       <p>We encountered a problem, which we at the time had difficulties to
+       solve. Mets encodes document structure a nested hierarchy of elements
+       called div. The div element may contain other div elements, and
+       pointers to entries in the file group and metadata sections. Here is a
+       number of div elements:</p>
+
+<pre>
+&lt;m:div ID="manus:7:div:physical:792" xml:lang="eng" ORDERLABEL="Leaf (with flap)">
+   &lt;m:fptr FILEID="file:default:7:792"/>
+&lt;/m:div>
+&lt;m:div ID="manus:7:div:physical:792" xml:lang="ara" ORDERLABEL="وجه الغلاف">
+   &lt;m:fptr FILEID="file:default:7:792"/>
+&lt;/m:div>
+</pre>
+
+       <p>We need two divs, since we need both the English phrase <em>Leaf
+       (with flap)</em> and the corresponding one in Arabic, وجه الغلاف, to
+       build the user interface. We made the mistake to interprete the ID as
+       an identifier of the digital object, and to extract the data needed we
+       need language as well as this ID. This has complicated a lot of
+       programming at later stages in the project and it is also an XML
+       error. A small change (in red below) had made the divs unique and our
+       programming easier.</p>
+
+<pre>
+&lt;m:div ID="manus:7:div:physical:792:<span style="color:red">eng</span>" xml:lang="eng" ORDERLABEL="Leaf (with flap)">
+   &lt;m:fptr FILEID="file:default:7:792"/>
+&lt;/m:div>
+&lt;m:div ID="manus:7:div:physical:792:<span style="color:red">ara</span>" xml:lang="ara" ORDERLABEL="وجه الغلاف">
+   &lt;m:fptr FILEID="file:default:7:792"/>
+&lt;/m:div>
+</pre>
+
+
+     </li>
+
+     <li>
+       <p><strong>Structlink Section</strong></p>
+       <blockquote>
+	 Structural Links allows the creator of the METS document to
+	 record the existence of hyperlinks between nodes in the
+	 hierarchy outlined in the Structural Map. This is of
+	 particular value in using METS to archive Websites or other
+	 hypermedia.
+       </blockquote>
+
+       <p>Used extensively in SJAUIGA to encode links between different views
+       (enlarged, rotated etc). It had been easier to use them had we not made
+       the mistake described above.</p>
+
+     </li>
+     <li>
+       <p><strong>Behavior</strong></p>
+       <blockquote>
+	 A behavior section can be used to associate executable
+	 behaviors with content in the METS object. A behavior section
+	 has an interface definition element that represents an
+	 abstract definition of the set of behaviors represented by a
+	 particular behavior section. A behavior section also has a
+	 behavior mechanism which is a module of executable code that
+	 implements and runs the behaviors defined abstractly by the
+	 interface definition.
+       </blockquote>
+       <p>Currently not used in SJAUIGA</p>
+     </li>
+    </ol>
+
+    <h3>A pictoral view of the mets data model</h3>
+
+    <embed   src="mets.svg"
+	     name="Mets data model" 
+	     width="800"
+	     height="600"
+	     pluginspage="http://www.adobe.com/svg/viewer/install/"
+	     type="image/svg+xml" />
+
+
+    </div>
+    </div>
+    <p class="version"><small>$Revision: 1.4 $<br/>Last modified $Date: 2007/02/26 13:18:29 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

@@ -1,0 +1,257 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Metadata, Cumulus och Verksbegrepp</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <style media="all" type="text/css">
+      body {
+      margin-left:  4%;
+      margin-right: 4%;
+      margin-top:   2%;
+      font-family: arial;
+      }
+    </style>
+  </head>
+  <body>
+    <p align="right">internt arbetsmaterial<br/>
+    slu 2007-02-14</p>
+    <h1>Metadata, Cumulus och Verksbegrepp</h1>
+
+    <p><em>Sigfrid Lundberg (slu@kb.dk)<br/>
+    Digital Udvikling og Produktion, Web-Teknologi<br/>
+    Det Kongelige Bibliotek</em></p>
+
+    <h2>0. Innehållsförteckning</h2>
+    <ul>
+      <li><a href="#bakgrund">Bakgrund</a></li>
+      <li>
+	<a href="#verk">Metadata för verk</a>
+	<ul>
+	  <li><a href="#elementset">Metadataelement</a></li>
+	</ul>
+      </li>
+      <li>
+	<a href="#structure">Att beskriva struktur</a>
+	<ul>
+	  <li><a href="#datamodel">En enkel beskrivningsmodell</a></li>
+	</ul>
+      </li>
+    </ul>
+
+    <h2 id="bakgrund">1. Bakgrund</h2>
+
+    <p>Ytterst är produkten av en digitalisering av ett fysiskt verk
+    ett digitalt verk, inte en samling bilder. Det är i mina ögon
+    genant att vi efter kanske tre års arbete kommit på att vi måste
+    ha ett verkbegrepp i Cumulus; i mina föreställningsvärld borde
+    detta begrepp ha varit så centralt att det borde mer eller mindre
+    varit ett av huvudkriterierna för urvalet av programvara när den
+    inköptes.</p>
+
+    <h2 id="verk">2. Metadata för verk</h2>
+
+    <p>Ett metadataobjekt -- en bibliografisk post -- skall uppfylla ett
+    antal funktionella krav.</p>
+
+    <p>Ett verk är ytterst en idé som kan manifesteras i ett manuskript.
+    Detta kan i sin tur kan få ett utryck i form av en upplaga av en
+    tryckt bok. Instanser, enskilda exemplar, av ett utryck kan återfinnas
+    på vara våra hyllor eller som digitala filer i våra digitala arkiv.</p>
+
+    <p>Begreppen verk (work), manifestation, utryck (expression) och instans
+    (instance) är centrala i modernt tänkande om den bibliografiska
+    postens funktion. Den är att göra det möjligt för brukare att kunna</p>
+
+    <ul>
+	<li>finna,</li>
+	<li>identifiera,</li>
+	<li>selektera </li>
+    </ul>
+
+    <p>och</p>
+
+    <ul>
+      <li>få tillgång till</li>
+    </ul>
+
+    <p>instanser av ett verk[1].</p>
+
+    <h3 id="elementset">2.1. Metadataelement</h3>
+
+    <p>I det följande använder jag metadatatermer hämtade ur en
+    bestämd vokabulär, nämligen Metadata Object Description Schema
+    (MODS)[2]. Vi anbefaller detta schema av flera skäl:</p>
+
+    <ul>
+
+      <li>Vi har i arbetet med Elektra funnit Dublin Core för fattigt,
+      i synnerhet för presentation av en full post. MARC är å andra
+      sidan för svårhanterligt</li>
+
+      <li>MODS är ur semantisk synpunkt tillräckligt rikt för att
+      tillåta transform till och från MARC 21 utan förlust av
+      information</li>
+
+      <li>MODS tillåter katalogisering av tidsskriftsartiklar på ett
+      renare sätt än DC</li>
+
+      <li>Vi har redan i Sjauiga[3] erfarenhet av MODS, och utvecklat
+      java-klasser, XSLT-skript mm för dess bruk</li>
+
+      <li>Genom olika katalogiseringsregler och tillhörande
+      syntaktiska krumsprång (bland annat kan en MODSpost innehålla
+      relaterade MODSposter) kan man hantera flerbandsverk,
+      tidsskriftsartiklar med mera. MODS har en mer tydlig modulär
+      design än Dublin Core.</li>
+
+    </ul>
+
+    <p>Vi föreslår <strong>inte</strong> att några nu existerande
+    system skall designas om för att stödja MODS internt. I stället
+    föreslår vi att dessa elements semantik skall implementeras i
+    Cumulus, om de inte redan stöds. Däremot bör KB fastställa en
+    synstax för utbyte av metadata för digitaliserade objekt. Vi
+    föreslår att MODS skall användas för detta ändamål.</p>
+
+    <p>Nedan ger vi den semantik vi anser behövs i Cumulus. Vi ger den
+    i form av MODS-fält tillsammans med deras DC[4] motsvarigheter (vi
+    använder Dublin Core för sökning i såväl E-resursser, medan vi i
+    Sjauiga använd DC för sökning och MODS för presentation.).</p>
+
+    <h4>2.1.1. Generella element för beskrivning av instanser av
+    verk</h4>
+
+<pre>
+         mods			 dc		mening
+
+	 name			 creator	författare/upphovsman
+	 titleInfo/title	 title		titel
+	 titleInfo/subTitle	 title		subtitel
+	 note			 description	beskrivning
+	 note[@type='thumbnail']		visuell beskrivning, thumbnail
+	 originInfo/place
+	 originInfo/dateCreated	 date		publiceringsdatum
+	 language		 language	resursens språk
+	 typeOfResource		 type		resursen type eller genre
+	 identifier		 identifier	URL
+	 subject		 subject	ämnes- eller nyckelord
+	 classification		 subject	ämnesklassifikation
+	 accessCondition	 rights		Copyright statement
+</pre>
+
+   <p>Fälten typeOfResource, subject och classification är fält som
+   kan användas för För att kunna aggregera resurserna i grupper. De
+   ger även text för sökning och kan i presentationssammanhang fungera
+   som vad vi i CMS-sammanhang kallar styrningsdata. Det bör utarbetas
+   kontrollerade vokabulärer för dessa fält. Spots och teasers kan
+   hämtas ur dessa note-fältet.</p>
+
+   <h4>2.1.2. Specifika element för beskrivning instansernas relation till
+   samlingar, avdelningar inom KB med mera</h4>
+
+   <p>I Sjauiga fann vi snabbt att beskrivning av samlingar och
+   avdelningar inte är triviala problem, i synnerhet om den skall vara
+   flerspråkig. Utöver användning för presentationsändamål har dessa
+   beskrivningar en roll som styrningsdata.</p>
+
+
+   <h2 id="structure">3. Att beskriva struktur</h2>
+
+   <p>I tidsskrift.dk och Sjauiga används METS[5] beskrivning av
+   fysisk och/eller logisk struktur inom enskilda verk. METS har ett
+   antal fördelar som gör att jag vill anbefalla det som ett utbytes
+   och backup-format för applikationer som har behov av att beskriva
+   elektroniska resurser med struktur. Några av de viktigaste är
+   att</p>
+
+   <ul>
+     <li>schemat är modulärt och organiserat så att data lätt kan
+     hållas i databas (relationsdatabaser är väl ägnade för detta). I
+     Sjauiga har vi implementerat en REST-baserad XML webb-service för
+     export av data ur äldre applikationer.</li>
+
+     <li>METS i sig ger en vokabulär för tekniska och strukturella
+     metadata, men föreskriver inte vilka metadata som skall brukas
+     för strukturens innehåll. För detta anbefalles DC, MODS eller
+     MARC. Jag anbefaller i föregående avsnitt MODS för detta
+     ändamål.</li>
+
+     <li>METS är en relativt liten vokabulär, totalt 36 element, men
+     är generellt nog att beskriva korrelationer inom och mellan
+     instanser eller uttryck av ett verk. Detta är en mycket kraftfull
+     egenskap, som kan (bara som exempel) brukas för att generera länkar 
+     <ul>
+       <li>mellan översiktsbild och detaljerbilder, roterade
+       bilder etc (används i Sjauiga)</li>
+       <li>mellan text och video (klicka på en länk i ett
+       operalibretto och media player startar just på den
+       punkten)</li>
+     </ul>
+     I tidskrift.dk används denna länkningsfunktion placering av
+     bilder och illustrationer på rätt position i hypertextdokument.</li>
+     <li>Vi har nu erfarenhet att bruka METS från två projekt.</li>
+   </ul>
+
+   <h3 id="datamodel">3.1. En enkel beskrivningsmodell</h3>
+
+   <p>Cumulus har från version version 7.0 förmågan att beskriva olika
+   relationer mellan objekt[6]. Denna nya funktion är i hög grad
+   relevant, men av beskrivningarna att döma är kräver den en hel del
+   klickande i menyer, vilket inte inte är praktiskt i ett högt
+   uppskruvat arbetstempo.</p>
+
+   <p>Den funktion som är önskvärd är framställning av en hierarkisk
+   innehållsförteckning. Sådana är möjliga att göra för t ex
+   HTML-dokument och andra icke-hierarkiska dokumentformat, trots att
+   dessa till skillnad från t ex Text Encoding Inititiative-dokument
+   inte har en hierarkisk "content model".</p>
+
+   <p>Algoritmen bygger på att man brukar rubriknivåer. Vi måste
+   metadata tillföra ordnade par av rubriknivå och titel som "ett
+   fält". Systemet måste tillåta "one to many"-relation sida mellan
+   och titel och rubriknivå-par).</p>
+
+   <p>Låt rubriknivå vara ett fält med heltalsvärden 1, 2, 3...  Nivå
+   1 är den högsta och innebär verksnivå, 2 kapitel, 3 avdelning inom
+   kapitel och så vidare. Ett innehållsobjekt på lägre antags "ärva"
+   metadata från närmast föregående på högre, i den mening att dessa
+   metadata är giltiga på den lägre.  Rubriknivå måste knytas till
+   rubrik, och kunna repeteras.  Ett exempel (ur ADL) gör det hela
+   tydligare:</p>
+
+<pre>
+		 rubriknivå    titel		   sida
+
+		 1	      JEPPE PAA BIERGET	   223
+		 2	      ACTUS I		   227
+		 3	      SCEN  1		   227
+		 3	      SCEN  2		   228
+		 3	      SCEN  3		   229
+		 
+		 ...
+
+		 3	      SCEN. 8		   237
+		 2	      ACTUS II		   241
+		 3	      SCEN. 1		   241
+
+		 ... och så vidare
+</pre>
+
+   <h2>4. Konklusion</h2>
+
+   <p>Givet några relativt enkla nya metadatafält bör man via Cumulus
+   kunna generera strukturella metadata som är helt interoperabla med
+   vad Sjauigaprojektet kan få ut ur MANUS-applikationen. I själva
+   verket tillåter inte manus flera titlar per sida, och klarar inte
+   av mer än två rubriknivåer.</p>
+
+   <h2>5. Fotnoter:</h2>
+
+   <p>[1] <a href="http://www.ifla.org/VII/s13/frbr/frbr.pdf">http://www.ifla.org/VII/s13/frbr/frbr.pdf</a></p>
+   <p>[2] <a href="http://www.loc.gov/standards/mods/">http://www.loc.gov/standards/mods/</a></p>
+   <p>[3] <a href="http://udvikling.kb.dk/twiki/bin/view/DDA/ServicesAndApplicationsToBePortedToCMS">http://udvikling.kb.dk/twiki/bin/view/DDA/ServicesAndApplicationsToBePortedToCMS</a></p>
+   <p>[4] <a href="http://www.dublincore.org/documents/dces/">http://www.dublincore.org/documents/dces/</a></p>
+   <p>[5] <a href="http://www.loc.gov/standards/mets/">http://www.loc.gov/standards/mets/</a></p>
+   <p>[6] <a href="http://www.canto.com/main_menu/technologies/cumulus_core/cumulus_core_art.php">http://www.canto.com/main_menu/technologies/cumulus_core/cumulus_core_art.php</a></p>
+
+  </body>
+</html>

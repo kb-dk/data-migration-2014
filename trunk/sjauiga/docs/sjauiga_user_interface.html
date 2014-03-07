@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>User interface</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+       blockquote {
+       font-size: 9pt;
+       font-style: italic;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+      <p>&lt;&lt; <a href="sjauiga_poma.html">The Guaman Poma web site</a> |
+      <a href="sjauiga_toc.html">Table of Contents</a> |
+      <a href="sjauiga_future.html">The future</a> &gt;&gt;</p>
+
+      <div class="level2">
+	<h2>User interface</h2>
+	<p>The user interface has been modified a lot since the old manus days. Tom Juul Andersen and Gitte Petersen has helped developing a new interface that both satisfies the new functionality, and our new hight usability standards.</p>
+<img src="sjauiga-gui.jpg"  border="1"/>
+<p>
+The new interface is divided into sections.
+<ul>
+<li>External Links <span style="color:#F88017; font-weight:bold">[]</span>: External related information. Owner of the work or links to documents describing the it.</li>
+<li>Work overview/navigation <span style="color:red; font-weight:bold">[]</span>: Overview and navigation related to the entire work. The navigation is dynamic, so any deep linkers can gain overview instantly.</li>
+<li>Page navigation <span style="color:blue; font-weight:bold">[]</span>: Navigation related to the current page. Next, Previous, Larger, Rotate etc.</li>
+<li>Breadcrumb <span style="color:yellow; font-weight:bold">[]</span>: Classic breadcrumb navigation. Links all the way back to www.kb.dk and any collections index.</li>
+<li>Scanned image <span style="color:purple; font-weight:bold">[]</span>: The Digitization of a page.</li>
+<li>Page Description / Transcription <span style="color:#00FF00; font-weight:bold">[]</span>: A Note or Transcription to the current page</li>
+</ul>
+
+</p>
+<h3>Technical Implementation</h3>
+<p>
+The User Interface is implemented in OpenCms. It has two simple Java classes to extract information from the Mets object, and from the Original MANUS database (The MANUS scheme holds information of localized strings used in the GUI. That information is not applicable to either METS or MODS, therefore we kept these data in the database for now). 
+</p>
+<p>
+It has it's own style information, making it complete independent of the rest of the new www.kb.dk website.<br/>
+For more information refer to the OpenCms module dk.kb.dup.mets <a href="http://udvikling.kb.dk/twiki/bin/view/DDA/OpenCmsModulerDkKbDupMets">documentation page</a> on DUP's TWiki.
+</p>
+      </div>
+    </div>
+    <p class="version"><small>$Revision: 1.3 $<br/>Last modified $Date: 2007/03/08 16:20:07 $<br/>by $Author: jac $</small></p>
+
+  </body>
+</html>

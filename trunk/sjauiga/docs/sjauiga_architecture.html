@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Architecture</title>
+    <link rel="stylesheet"
+          href="../html_print.css"/>
+    <style media="all" type="text/css">
+      blockquote {
+      font-size: 9pt;
+      font-style: italic;
+      }
+      td p { margin-left: +2% }
+    </style>
+  </head>
+  <body>
+    <div class="level1">
+    <p>&lt;&lt; <a href="sjauiga_status.html">Project status</a> | 
+                <a href="sjauiga_toc.html">Table of Contents</a> |
+                <a href="sjauiga_mets.html">mets &amp; mods &amp; manus</a> &gt;&gt;</p>
+
+    <div class="level2">
+    <h2>Architecture</h2>
+
+      <p>The Manus application has its original editoral interface
+      intact. Library staff can continue to enter data as they have for
+      several years, and thereby create new Manus documents.</p>
+
+      <p>The data entered are stored in the Manus (Oracle) application,
+      originally built using Oracle Designer which is no longer supported in
+      the technical platform of the Royal Library.</p>
+
+      <p>Sjauiga is partly a Java application built on top of the old oracle
+      database, partly a completely independent one. In the graph, anything
+      from cataloging up to and including the XWS layer are built on top of
+      our RDBMS.</p>
+
+
+    <pre class="inline">
+User interface      Database interfaces
+--------------      -------------------
+   
+                    +----------+  
+  +-----------+     |  MANUS   | 
+  | Cataloger | --> | Database |
+  | interface |     | (Oracle) |
+  +-----------+     +----------+
+                          |
+                          V
+                    +-----------+
+                    | XWS layer |  
+                    +-----------+
+                          |
+                          V
+  +-----------+     +------------+
+  |   CMS     |     |  METS      | 
+  |  Editors' | &lt;-- | (XML-file) | 
+  | interface |     | cache      | 
+  +-----------+     +------------+
+        |                |
+        V                V
+  +-----------+     +---------------+
+  |  Library  |     |   Indexer     |
+  |   Users'  | &lt;-- |    &amp;          |
+  | interface |     | search engine |
+  +-----------+     +---------------+
+</pre>
+
+      <p>The remaining system components are built using other
+      technologies.</p>
+
+      <p>Data are exported from Manus, Mus and Musman applications
+      using a REST XML web service. The export format is METS using
+      MODS for item level metadata. Data are cached in a file system
+      and is available from there using HTTP. The documents are
+      delivered by the CMS, but there are not really any special
+      facilities for using the data within the CMS.</p>
+
+      <p>It is easy to link to any object through a permanent linking
+      structure. METS documents are also indexed for searching.</p>
+
+    </div>
+    </div>
+    <br clear="all"/>
+    <p class="version"><small>$Revision: 1.4 $<br/>Last modified $Date: 2007/02/28 14:56:06 $<br/>by $Author: slu $</small></p>
+
+  </body>
+</html>

@@ -1,0 +1,903 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20000303 Stylable//EN"
+             "http://www.w3.org/TR/2000/03/WD-SVG-20000303/DTD/svg-20000303-stylable.dtd">
+<!-- Creator: fig2dev Version 3.2 Patchlevel 4 -->
+<!-- CreationDate: Fri Feb 23 12:30:41 2007 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="11.7in" height="8.3in" viewBox="0 0 13303 9146">
+<g style="stroke-width:.025in; stroke:black; fill:none">
+<defs>
+<pattern id="tile1" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 -100 200 16" />
+<path d="M 0 -60 200 56" />
+<path d="M 0 -20 200 96" />
+<path d="M 0 20 200 136" />
+<path d="M 0 60 200 176" />
+<path d="M 0 100 200 216" />
+<path d="M 0 140 200 256" />
+<path d="M 0 180 200 296" />
+</pattern>
+<pattern id="tile2" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 200 -100 0 16" />
+<path d="M 200 -60 0 56" />
+<path d="M 200 -20 0 96" />
+<path d="M 200 20 0 136" />
+<path d="M 200 60 0 176" />
+<path d="M 200 100 0 216" />
+<path d="M 200 140 0 256" />
+<path d="M 200 180 0 296" />
+</pattern>
+<pattern id="tile3" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 -100 200 16" />
+<path d="M 200 -100 0 16" />
+<path d="M 0 -60 200 56" />
+<path d="M 200 -60 0 56" />
+<path d="M 0 -20 200 96" />
+<path d="M 200 -20 0 96" />
+<path d="M 0 20 200 136" />
+<path d="M 200 20 0 136" />
+<path d="M 0 60 200 176" />
+<path d="M 200 60 0 176" />
+<path d="M 0 100 200 216" />
+<path d="M 200 100 0 216" />
+<path d="M 0 140 200 256" />
+<path d="M 200 140 0 256" />
+<path d="M 0 180 200 296" />
+<path d="M 200 180 0 296" />
+</pattern>
+<pattern id="tile4" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 100 0 200 100" />
+<path d="M 0 0 200 200" />
+<path d="M 0 100 100 200" />
+</pattern>
+<pattern id="tile5" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 100 0 0 100" />
+<path d="M 200 0 0 200" />
+<path d="M 200 100 100 200" />
+</pattern>
+<pattern id="tile6" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 100 0 200 100" />
+<path d="M 0 0 200 200" />
+<path d="M 0 100 100 200" />
+<path d="M 100 0 0 100" />
+<path d="M 200 0 0 200" />
+<path d="M 200 100 100 200" />
+</pattern>
+<pattern id="tile7" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 0 0 50" />
+<path d="M 0 50 200 50" />
+<path d="M 100 50 100 150" />
+<path d="M 0 150 200 150" />
+<path d="M 0 150 0 200" />
+</pattern>
+<pattern id="tile8" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 0 50 0" />
+<path d="M 50 0 50 200" />
+<path d="M 50 100 150 100" />
+<path d="M 150 0 150 200" />
+<path d="M 150 0 200 0" />
+</pattern>
+<pattern id="tile9" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 50 200 50" />
+<path d="M 0 150 200 150" />
+</pattern>
+<pattern id="tile10" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 50 0 50 200" />
+<path d="M 150 0 150 200" />
+</pattern>
+<pattern id="tile11" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 50 200 50" />
+<path d="M 0 150 200 150" />
+<path d="M 50 0 50 200" />
+<path d="M 150 0 150 200" />
+</pattern>
+<pattern id="tile12" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 0 25 50" />
+<path d="M 0 50 200 50" />
+<path d="M 100 50 125 150" />
+<path d="M 0 150 200 150" />
+<path d="M 0 150 25 200" />
+</pattern>
+<pattern id="tile13" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 200 0 175 50" />
+<path d="M 0 50 200 50" />
+<path d="M 100 50 75 150" />
+<path d="M 0 150 200 150" />
+<path d="M 200 150 175 200" />
+</pattern>
+<pattern id="tile14" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 0 50 25" />
+<path d="M 50 0 50 200" />
+<path d="M 50 100 150 125" />
+<path d="M 150 0 150 200" />
+<path d="M 150 0 200 25" />
+</pattern>
+<pattern id="tile15" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 25 50 0" />
+<path d="M 50 0 50 200" />
+<path d="M 50 125 150 100" />
+<path d="M 150 0 150 200" />
+<path d="M 150 25 200 0" />
+</pattern>
+<pattern id="tile16" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 50 A 50 50 0 1 0 100 50" />
+<path d="M 100 50 A 50 50 0 1 0 200 50" />
+<path d="M 50 100 A 50 50 0 1 0 150 100" />
+<path d="M 0 150 A 50 50 0 0 0 50 100" />
+<path d="M 150 100 A 50 50 0 1 0 200 50" />
+<path d="M 50 0 A 50 50 0 1 0 150 0" />
+<path d="M 150 0 A 50 50 0 0 0 200 50" />
+<path d="M 0 50 A 50 50 0 0 0 50 0" />
+<path d="M 0 150 A 50 50 0 1 0 100 150" />
+<path d="M 100 150 A 50 50 0 1 0 200 150" />
+</pattern>
+<pattern id="tile17" x="0" y="0" width="100" height="100"
+         patternUnits="userSpaceOnUse">
+<g transform="scale(0.5)" >
+<path d="M 0 50 A 50 50 0 1 0 100 50" />
+<path d="M 100 50 A 50 50 0 1 0 200 50" />
+<path d="M 50 100 A 50 50 0 1 0 150 100" />
+<path d="M 0 150 A 50 50 0 0 0 50 100" />
+<path d="M 150 100 A 50 50 0 1 0 200 50" />
+<path d="M 50 0 A 50 50 0 1 0 150 0" />
+<path d="M 150 0 A 50 50 0 0 0 200 50" />
+<path d="M 0 50 A 50 50 0 0 0 50 0" />
+<path d="M 0 150 A 50 50 0 1 0 100 150" />
+<path d="M 100 150 A 50 50 0 1 0 200 150" />
+</g>
+</pattern>
+<pattern id="tile18" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<circle cx="100" cy="100" r="100" />
+</pattern>
+<pattern id="tile19" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 50 45 0 105 0 140 50 200 50 " />
+<path d="M 0 50 45 100 105 100 140 50 200 50" />
+<path d="M 0 150 45 100 105 100 140 150 200 150" />
+<path d="M 0 150 45 200 105 200 140 150 200 150" />
+</pattern>
+<pattern id="tile20" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 70 65 0 140 0 200 70 " />
+<path d="M 0 70 0 130 65 200 140 200 200 130 200 70" />
+</pattern>
+<pattern id="tile21" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 50 0 75 25 100 0 M 150 0 175 25 200 0" />
+<path d="M 0 50 25 25 75 75 125 25 175 75 200 50" />
+<path d="M 0 100 25 75 75 125 125 75 175 125 200 100" />
+<path d="M 0 150 25 125 75 175 125 125 175 175 200 150" />
+<path d="M 0 200 25 175 75 225 125 175 175 225 200 200" />
+</pattern>
+<pattern id="tile22" x="0" y="0" width="200" height="200"
+         patternUnits="userSpaceOnUse">
+<path d="M 0 50 25 75 0 100 M 0 150 25 175 0 200" />
+<path d="M 50 0 25 25 75 75 25 125 75 175 50 200" />
+<path d="M 100 0 75 25 125 75 75 125 125 175 100 200" />
+<path d="M 150 0 125 25 175 75 125 125 175 175 150 200" />
+<path d="M 200 0 175 25 225 75 175 125 225 175 200 200" />
+</pattern>
+</defs>
+<!-- Line -->
+<path d="M 3866,654
+4739,654
+4739,1122
+3866,1122
+3866,654
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1648,1902
+2338,1902
+2338,2585
+1648,2585
+1648,1902
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 2084,3585
+2775,3585
+2775,4269
+2084,4269
+2084,3585
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 3772,717
+4645,717
+4645,1184
+3772,1184
+3772,717
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1574,1993
+2264,1993
+2264,2676
+1574,2676
+1574,1993
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 2010,3677
+2700,3677
+2700,4360
+2010,4360
+2010,3677
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 3648,810
+4521,810
+4521,1278
+3648,1278
+3648,810
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1475,2130
+2166,2130
+2166,2813
+1475,2813
+1475,2130
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1912,3813
+2602,3813
+2602,4497
+1912,4497
+1912,3813
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 3523,904
+4396,904
+4396,1371
+3523,1371
+3523,904
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1376,2266
+2067,2266
+2067,2950
+1376,2950
+1376,2266
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1813,3950
+2504,3950
+2504,4634
+1813,4634
+1813,3950
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 3398,997
+4271,997
+4271,1465
+3398,1465
+3398,997
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1278,2403
+1968,2403
+1968,3086
+1278,3086
+1278,2403
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 1714,4086
+2405,4086
+2405,4770
+1714,4770
+1714,4086
+" style="stroke:#000000;stroke-width:11;
+fill:#ffffff;
+"/>
+<!-- Line -->
+<path d="M 3835,2182
+4396,2182
+4396,2432
+3835,2432
+3835,2182
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4801,1808
+5363,1808
+5363,2057
+4801,2057
+4801,1808
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4708,2245
+5269,2245
+5269,2494
+4708,2494
+4708,2245
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4895,2681
+5456,2681
+5456,2931
+4895,2931
+4895,2681
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 5986,2931
+6548,2931
+6548,3180
+5986,3180
+5986,2931
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 5737,2463
+6298,2463
+6298,2712
+5737,2712
+5737,2463
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 5643,2026
+6205,2026
+6205,2276
+5643,2276
+5643,2026
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 5768,1527
+6329,1527
+6329,1777
+5768,1777
+5768,1527
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4458,2213
+4739,1964
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4664 2057
+4729 1973
+4636 2026
+4666 2028
+4664 2057
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4458,2307
+4677,2369
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4557 2357
+4663 2366
+4569 2317
+4583 2343
+4557 2357
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4490,2400
+4801,2681
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4700 2617
+4791 2672
+4727 2587
+4729 2616
+4700 2617
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5425,1902
+5737,1652
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5657 1741
+5726 1660
+5631 1709
+5661 1712
+5657 1741
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5331,2338
+5581,2182
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5492 2262
+5569 2190
+5469 2227
+5498 2233
+5492 2262
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5331,2400
+5643,2556
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5528 2522
+5631 2550
+5547 2485
+5556 2513
+5528 2522
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5519,2775
+5862,2962
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5748 2923
+5850 2955
+5768 2886
+5776 2915
+5748 2923
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Text -->
+<text x="6049" y="3086" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Section</text>
+<!-- Text -->
+<text x="3897" y="2338" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Work</text>
+<!-- Text -->
+<text x="4864" y="1964" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Chapter</text>
+<!-- Text -->
+<text x="4770" y="2400" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Chapter</text>
+<!-- Text -->
+<text x="4957" y="2837" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Chapter</text>
+<!-- Text -->
+<text x="5830" y="1683" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Section</text>
+<!-- Text -->
+<text x="5706" y="2182" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Section</text>
+<!-- Text -->
+<text x="5799" y="2619" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Section</text>
+<!-- Text -->
+<text x="3554" y="1184" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Metadata</text>
+<!-- Text -->
+<text x="3554" y="1340" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Object</text>
+<!-- Text -->
+<text x="1371" y="2556" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Struct</text>
+<!-- Text -->
+<text x="1371" y="2712" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Links</text>
+<!-- Text -->
+<text x="1371" y="2868" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+XLink</text>
+<!-- Text -->
+<text x="1808" y="4240" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Digital</text>
+<!-- Text -->
+<text x="1808" y="4396" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Objects</text>
+<!-- Text -->
+<text x="1808" y="4552" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+XLink</text>
+<!-- Line -->
+<path d="M 4084,2089
+4022,1371
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4052 1486
+4023 1385
+4011 1491
+4030 1468
+4052 1486
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5082,1683
+4334,1153
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4441 1204
+4345 1161
+4418 1238
+4412 1209
+4441 1204
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5986,1403
+4708,904
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4824 927
+4720 909
+4809 965
+4797 938
+4824 927
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5830,1964
+4490,1091
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4600 1137
+4501 1098
+4577 1172
+4571 1143
+4600 1137
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 3617,3991
+4178,3991
+4178,4240
+3617,4240
+3617,3991
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4583,3617
+5144,3617
+5144,3866
+4583,3866
+4583,3617
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4240,4022
+4521,3772
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4446 3866
+4510 3781
+4418 3835
+4448 3836
+4446 3866
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5612,3679
+6173,3679
+6173,3928
+5612,3928
+5612,3679
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 5612,4178
+6173,4178
+6173,4427
+5612,4427
+5612,4178
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4583,4115
+5144,4115
+5144,4365
+4583,4365
+4583,4115
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4583,4677
+5144,4677
+5144,4926
+4583,4926
+4583,4677
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 6610,3429
+7171,3429
+7171,3679
+6610,3679
+6610,3429
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 6672,3897
+7234,3897
+7234,4147
+6672,4147
+6672,3897
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Line -->
+<path d="M 4240,4115
+4490,4240
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4375 4205
+4477 4234
+4393 4169
+4402 4196
+4375 4205
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4240,4240
+4521,4614
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4433 4533
+4512 4603
+4467 4508
+4463 4537
+4433 4533
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5207,3679
+5519,3741
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5399 3738
+5505 3738
+5407 3698
+5424 3722
+5399 3738
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5207,3741
+5519,4209
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 5435 4122
+5511 4197
+5470 4099
+5465 4128
+5435 4122
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 6236,3741
+6548,3523
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 6463 3607
+6536 3531
+6439 3573
+6468 3578
+6463 3607
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 6236,3804
+6579,3991
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 6465 3952
+6567 3984
+6485 3915
+6493 3944
+6465 3952
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 3554,4115
+2338,4365
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2448 4321
+2351 4362
+2457 4361
+2432 4345
+2448 4321
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4521,3679
+2463,4053
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2575 4011
+2477 4050
+2582 4052
+2558 4035
+2575 4011
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4552,4801
+2650,4209
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2768 4223
+2663 4213
+2756 4264
+2742 4237
+2768 4223
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4708,1870
+2276,1995
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2392 1968
+2290 1994
+2394 2010
+2372 1990
+2392 1968
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 4833,2806
+2213,2307
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2333 2308
+2227 2310
+2325 2349
+2308 2325
+2333 2308
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 5893,3118
+2120,2463
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 2239 2462
+2134 2465
+2232 2503
+2215 2479
+2239 2462
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 2338,2182
+4677,3523
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4564 3482
+4665 3516
+4585 3446
+4592 3474
+4564 3482
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Line -->
+<path d="M 2245,2369
+4583,4053
+" style="stroke:#000000;stroke-width:11;
+"/>
+<!-- Arrowhead on endpoint -->
+<path d="M 4475 4000
+4572 4045
+4499 3967
+4504 3996
+4475 4000
+Z
+" style="stroke:#000000;stroke-width:11;
+fill:#000000;"/>
+<!-- Text -->
+<text x="6610" y="1652" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Logical structure</text>
+<!-- Text -->
+<text x="3679" y="4147" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Book</text>
+<!-- Text -->
+<text x="4645" y="3772" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Page</text>
+<!-- Text -->
+<text x="4677" y="4271" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Page</text>
+<!-- Text -->
+<text x="4677" y="4833" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Page</text>
+<!-- Text -->
+<text x="5674" y="3835" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Line</text>
+<!-- Text -->
+<text x="6672" y="3554" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Char</text>
+<!-- Text -->
+<text x="5674" y="4334" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Line</text>
+<!-- Text -->
+<text x="6735" y="4053" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Char</text>
+<!-- Text -->
+<text x="6080" y="4677" fill="#000000"  font-family="Times" font-style="normal" font-weight="normal" font-size="100" text-anchor="start" >
+Physical structary</text>
+</g>
+</svg>
